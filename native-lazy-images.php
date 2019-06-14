@@ -7,7 +7,7 @@
   Version: 1.0
   Author: MarcDK
   Author URI: https://marc.tv
-  GitHub Plugin URI: mtoensing/native-lazy-oembed
+  GitHub Plugin URI: mtoensing/native-lazy-images
   License: GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
   This program is free software; you can redistribute it and/or modify
