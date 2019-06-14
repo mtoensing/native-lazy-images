@@ -3,7 +3,7 @@
 /*
   Plugin Name: Native Lazy Images
   Plugin URI: http://marc.tv/
-  Description: Adds loading=lazy attribute to all oembed iframnes.
+  Description: Adds loading=lazy attribute to all images of a posts content.
   Version: 1.0
   Author: MarcDK
   Author URI: https://marc.tv
@@ -22,44 +22,21 @@
 
  */
 
- add_filter('the_content', 'the_content_lazy_images', 15);  // hook into filter and use
+add_filter('the_content', 'the_content_lazy_images', 15);
 
-
-/**
- *
- * Modified from: Sunyatasattva
- * https://wordpress.stackexchange.com/questions/81522/change-html-structure-of-all-img-tags-in-wordpress
- * @param $the_content
- *
- * @return string
- *
- *
- * Initial use of code gave warning: DOMDocument::loadHTML(): Unexpected end tag : p
- * Due to invalid HTML
- *
- * https://stackoverflow.com/questions/11819603/dom-loadhtml-doesnt-work-properly-on-a-server
- *
- * libxml_use_internal_errors(true);
- */
-
-
-function the_content_lazy_images($the_content) {
-
+function the_content_lazy_images($the_content)
+{
     libxml_use_internal_errors(true);
 
     $post = new DOMDocument();
 
-    $post->loadHTML( '<?xml encoding="utf-8" ?>' . $the_content, 0 | LIBXML_NOENT );
+    $post->loadHTML('<?xml encoding="utf-8" ?>' . $the_content, 0 | LIBXML_NOENT);
 
     $imgs = $post->getElementsByTagName('img');
 
     // Iterate each img tag
-    foreach( $imgs as $img ) {
-
-
-        $img->setAttribute('loading','lazy');
-
-
+    foreach ($imgs as $img) {
+        $img->setAttribute('loading', 'lazy');
     };
 
     return $post->saveHTML();
