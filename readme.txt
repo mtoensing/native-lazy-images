@@ -3,7 +3,7 @@ Contributors: MarcDK
 Tags: marctv, images, lazy, native, loading
 Requires at least: 3.8
 Tested up to: 5.2.1
-Stable tag: 1.0
+Stable tag: 0.1
 
 == Description ==
 
