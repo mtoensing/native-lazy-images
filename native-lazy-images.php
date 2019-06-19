@@ -4,7 +4,7 @@
   Plugin Name: Native Lazy Images
   Plugin URI: http://marc.tv/
   Description: Adds loading=lazy attribute to all images of a posts content.
-  Version: 1.1
+  Version: 1.2
   Author: MarcDK
   Author URI: https://marc.tv
   GitHub Plugin URI: mtoensing/native-lazy-images
@@ -26,9 +26,10 @@ add_filter('the_content', 'the_content_lazy_images', 15);
 
 function the_content_lazy_images($the_content)
 {
+  if($the_content != ''){
 
     libxml_use_internal_errors(true);
-    
+
     $post = new DOMDocument();
 
     $post->loadHTML(mb_convert_encoding($the_content, 'HTML-ENTITIES', 'UTF-8'));
@@ -41,4 +42,5 @@ function the_content_lazy_images($the_content)
     };
 
     return $post->saveHTML();
+  }
 }
